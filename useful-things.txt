@@ -1,0 +1,105 @@
+Useful command
+Vim & Linux
+------------------
+
+Manage windows setup
+install compizconfig-settings-manager
+start: ccsm
+
+Vim search with ignoring case 
+/\cStringToSearch
+
+
+Grep multiple words
+grep 'word1\|word2' pathToFile/fileName
+
+How to find a word under the cursor
+Let the word you searching for, and press "*".
+
+
+ssh -X <machine-name>
+http://edupack3.sonymobile.net/Education_package_3.0_day1.html#/5/9
+http://seldlx11541/Edu-3.0/Quick_start.html#/
+
+
+
+Android
+------------
+//Set device enforce
+adb shell setenforce 0
+adb shell setenforce 1
+adb shell getenforce
+
+Show error message only
+adb logcat *:E 
+
+List installed package number
+adb shell pm list packages -f | wc -l
+
+
+
+Git
+------------
+USEFUL "commit --amend" fix, this is to fix a --amend commit 
+---------------------------------------------------------------
+# Move the current head so that it's pointing at the old commit
+# Leave the index intact for redoing the commit
+git reset --soft HEAD@{1}
+
+# commit the current tree using the commit details of the previous
+# HEAD commit. (Note that HEAD@{1} is pointing somewhere different from the
+# previous command. It's now pointing at the erroneously amended commit.)
+git commit -C HEAD@{1}
+
+Git configuration
+-------------------------
+git config --list  //list the git local config
+git config --global --list // list out the global configuration file
+git config --system --l -e //list system configuration in an editor
+
+Git log
+-----------------------------------
+git log --all -i --grep=DMS021087954
+git log --author="$(git config user.name)" --all
+git log --author=<name> --all
+git log --all -S <search string>
+
+Git diff
+---------------------------------------
+git diff --numstat
+
+Git bisect
+---------------------------------------
+git bisect //find which commit introduces the bug 
+git bisect reset// to restart
+git bisect run //super useful
+
+Git reflog
+------------------------------------
+reflog is only available for 90 days
+
+Git rebase -i
+-------------------------------------
+squash: can squash the last commit to previous commit, so the first commit cannot be squashed 
+git rebase -i 
+
+//Good tool to fix conflict, after "git rebase -i".
+git mergetool -t kdiff3 XXXX.xml
+
+Local mannifests
+---------------------------------
+A local manifest can be used to
+    Replace branches of git listed in default manifest.
+        Add new gits to your workspace not listed in default manifest.
+
+        //Path : Where it should end up in your local path
+        //Project: the setup of project
+        //If you don't want to modify the existing project but just want to add a new project, no need to do "remove-project"
+
+        <manifest>
+        <remove-project name="platform/vendor/semc/system/core/libasb"/>
+        <project name="platform/vendor/semc/system/core/libasb"
+        path="vendor/semc/system/core/libasb"
+        revision="master"/>
+        </manifest>
+
